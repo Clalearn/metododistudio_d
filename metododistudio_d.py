@@ -47,7 +47,7 @@ def scala_griglia_con_giorni(griglia_orig_list, giorni_totali_programma, ore_gio
 
         # 3. Se non ci sono giorni disponibili (es. utente non seleziona nulla), ritorna tutto Riposo
         if num_giorni_effettivi == 0:
-            return np.full((ore_giornaliere, giorni_totali_programma), 'Riposo')
+            return np.full((ore_giornaliere, giorni_totali_programma), '')
 
         # 4. Scaliamo la griglia originale PER ADATTARLA AI SOLI GIORNI DI STUDIO
         #    Invece di spalmare su 'giorni_totali_programma', spalmiamo su 'num_giorni_effettivi'
@@ -64,7 +64,7 @@ def scala_griglia_con_giorni(griglia_orig_list, giorni_totali_programma, ore_gio
         griglia_studio_concentrata = griglia_iniziale[:, indici_cols_interpolati][indici_rows_interpolati, :]
 
         # 5. Costruiamo la Griglia Finale (inserendo i giorni di riposo)
-        griglia_finale = np.full((ore_giornaliere, giorni_totali_programma), 'Riposo', dtype='<U20')
+        griglia_finale = np.full((ore_giornaliere, giorni_totali_programma), '', dtype='<U20')
 
         # Riempiamo solo le colonne che corrispondono ai giorni di studio
         for k, idx_giorno_reale in enumerate(indici_giorni_studio):
@@ -285,6 +285,7 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)
+
 
 
 
